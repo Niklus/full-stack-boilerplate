@@ -1,13 +1,19 @@
+
 import { Router } from 'express';
+import todoController from '../controllers/todoController';
+import pageController from '../controllers/pageController';
+
 const router = Router();
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
-});
+/* Page Routes */
+router.get('/', pageController.homePage);
+router.get('/about', pageController.aboutPage);
 
-router.get('/about', (req, res, next) => {
-  res.render('about', { title: 'About' });
-});
+/* Todos Api routes*/
+router.get('/todos/:uname', todoController.getByName);
+router.get('/todo/:id', todoController.getById);
+router.post('/todo', todoController.addTodo);
+router.delete('/todo', todoController.deleteTodo);
+router.post('/todos/setup', todoController.setupTodos);
 
 export default router;

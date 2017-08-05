@@ -2,15 +2,16 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-
-// import favicon from 'serve-favicon';
 import path from 'path';
 import routes from './routes';
+import mongoose from 'mongoose';
+import connectionString from './config';
+// import favicon from 'serve-favicon';
 
-// db connection
-import { connect } from 'mongoose';
-//import connectionString from './config';
-//connect(connectionString('dbName'));
+// mongoose setup
+mongoose.connect(connectionString());
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// routes
 app.use('/', routes);
 
 // catch 404 and forward to error handler
