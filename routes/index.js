@@ -10,10 +10,10 @@ router.get('/', pageController.homePage);
 router.get('/about', pageController.aboutPage);
 
 /* Todos Api routes*/
-router.get('/todos/:uname', todoController.getByName);
-router.get('/todo/:id', todoController.getById);
-router.post('/todo', todoController.addTodo);
-router.delete('/todo', todoController.deleteTodo);
-router.post('/todos/setup', todoController.setupTodos);
+router.get('/api/todos/:uname', todoController.getByName);
+router.get('/api/todo/:id', todoController.getById);
+router.post('/api/todo', todoController.addTodo);
+router.delete('/api/todo', todoController.deleteTodo);
+router.post('/api/todos/setup', todoController.setupTodos);
 
 export default router;
