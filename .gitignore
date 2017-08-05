@@ -1,5 +1,5 @@
 #node modules
 node_modules/
 
-# config folder with database credentials
-config
+# json file with database credentials
+config/config.json
