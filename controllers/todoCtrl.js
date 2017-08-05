@@ -1,8 +1,10 @@
+
+'use strict';
+
 import Todos from '../models/todoModel';
 
 // Todos Api controller
-
-const todoController = {
+const todoCtrl = {
   
   getByName (req, res){
     Todos.find({ username: req.params.uname }, (err, todos) => {
@@ -72,4 +74,4 @@ const todoController = {
   }
 }
 
-export default todoController;
+export default todoCtrl;

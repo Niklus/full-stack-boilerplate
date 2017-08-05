@@ -1,19 +1,19 @@
 
 import { Router } from 'express';
-import todoController from '../controllers/todoController';
-import pageController from '../controllers/pageController';
+import todoCtrl from '../controllers/todoCtrl';
+import pageCtrl from '../controllers/pageCtrl';
 
 const router = Router();
 
 /* Page Routes */
-router.get('/', pageController.homePage);
-router.get('/about', pageController.aboutPage);
+router.get('/', pageCtrl.index);
+router.get('/about', pageCtrl.about);
 
 /* Todos Api routes*/
-router.get('/api/todos/:uname', todoController.getByName);
-router.get('/api/todo/:id', todoController.getById);
-router.post('/api/todo', todoController.addTodo);
-router.delete('/api/todo', todoController.deleteTodo);
-router.post('/api/todos/setup', todoController.setupTodos);
+router.get('/api/todos/:uname', todoCtrl.getByName);
+router.get('/api/todo/:id', todoCtrl.getById);
+router.post('/api/todo', todoCtrl.addTodo);
+router.delete('/api/todo', todoCtrl.deleteTodo);
+router.post('/api/todos/setup', todoCtrl.setupTodos);
 
 export default router;

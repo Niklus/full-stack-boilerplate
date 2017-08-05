@@ -1,14 +1,15 @@
 'use strict';
 
 // Page Controller
-const pageController = {
-  homePage (req, res, next){
+const pageCtrl = {
+  
+  index (req, res, next) {
     res.render('index', { title: 'Home Page' });
   },
 
-  aboutPage(req, res, next) {
+  about (req, res, next) {
     res.render('about', { title: 'About' });
   }
 }
 
-export default pageController;
+export default pageCtrl;
