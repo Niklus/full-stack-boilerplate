@@ -8,7 +8,7 @@ import contactCtrl from '../controllers/contactCtrl';
 const router = Router();
 
 /* Index Route */
-router.get('/', homeCtrl.index);
+router.get('/home', homeCtrl.home);
 
 /* Contact Routes */
 router.get('/contact', contactCtrl.contactPage);

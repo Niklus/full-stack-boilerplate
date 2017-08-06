@@ -2,13 +2,11 @@
 
 import { createTransport } from 'nodemailer';
 import mg from 'nodemailer-mailgun-transport';
-import configValues from './config';
-
 
 const auth = {
   auth: {
-    api_key: `${configValues.api_key}`,
-    domain: `${configValues.domain}`
+    api_key: process.env.API_KEY,
+    domain: process.env.DOMAIN
   }
 }
 
@@ -33,7 +31,8 @@ const contactCtrl = {
 
     if (errors) {
       console.log('error', errors); // handle better
-      return res.redirect('/contact');
+      res.redirect('/contact');
+      return;
     }
 
     const mailOptions = {
@@ -51,6 +50,11 @@ const contactCtrl = {
       }
       res.redirect('/contact');
     });
+
+    /**
+     * req.validationErrors() may be removed in a future version. 
+     * Use req.getValidationResult() instead
+     * req.getValidationResult().then( result => {});*/
   }
 }
 

@@ -4,19 +4,19 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import path from 'path';
 import routes from './routes';
-import mongoose from 'mongoose';
-import connectionString from './config';
+import connectMongoose from './db';
 import engines from 'consolidate';
 // import favicon from 'serve-favicon';
-
-//
 import expressValidator from 'express-validator';
+import dotenv from 'dotenv';
 
-// mongoose setup
-mongoose.connect(connectionString());
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// Load environment variables from .env file
+dotenv.load();
 
+// database connection
+connectMongoose();
+
+// app
 const app = express();
 
 // view engine setup
@@ -30,9 +30,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-//
+// comment out if you host your client separately on cdn e.g firebase
+app.use(express.static(path.join(__dirname, '../client'))); 
+
+// validator
 app.use(expressValidator());
 
 // routes
