@@ -14,7 +14,7 @@ const auth = {
 
 const transporter = createTransport(mg(auth));
 
-// Page Controller
+// Contact Controller
 const contactCtrl = {
   
   contactPage (req, res, next) {
