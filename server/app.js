@@ -1,3 +1,5 @@
+'use strict';
+
 import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
@@ -32,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // comment out if you host your client separately on cdn e.g firebase
-app.use(express.static(path.join(__dirname, '../client'))); 
+app.use(express.static(path.join(__dirname, '../client/dist'))); 
 
 // validator
 app.use(expressValidator());

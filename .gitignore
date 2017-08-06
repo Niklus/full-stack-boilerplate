@@ -1,5 +1,14 @@
-#node modules
+# node modules
 node_modules/
 
 # keys
 .env
+
+# dist folder
+dist/
+
+# docs
+_docs
+
+# temp folder
+.tmp/
