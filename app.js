@@ -6,7 +6,11 @@ import path from 'path';
 import routes from './routes';
 import mongoose from 'mongoose';
 import connectionString from './config';
+import engines from 'consolidate';
 // import favicon from 'serve-favicon';
+
+//
+import expressValidator from 'express-validator';
 
 // mongoose setup
 mongoose.connect(connectionString());
@@ -16,8 +20,9 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 const app = express();
 
 // view engine setup
+app.engine('hbs', engines.handlebars);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -26,6 +31,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//
+app.use(expressValidator());
 
 // routes
 app.use('/', routes);

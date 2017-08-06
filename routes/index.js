@@ -1,13 +1,20 @@
+'use strict';
 
 import { Router } from 'express';
 import todoCtrl from '../controllers/todoCtrl';
-import pageCtrl from '../controllers/pageCtrl';
+import homeCtrl from '../controllers/homeCtrl';
+import contactCtrl from '../controllers/contactCtrl';
 
 const router = Router();
 
-/* Page Routes */
-router.get('/', pageCtrl.index);
-router.get('/about', pageCtrl.about);
+/* Home Routes */
+router.get('/', homeCtrl.index);
+router.get('/about', homeCtrl.about);
+
+/* Contact Routes */
+router.get('/contact', contactCtrl.contactPage);
+router.post('/contact', contactCtrl.contactPost);
+
 
 /* Todos Api routes*/
 router.get('/api/todos/:uname', todoCtrl.getByName);
