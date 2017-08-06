@@ -1,6 +1,6 @@
 'use strict';
 
-// Page Controller
+// Home Page Controller
 const homeCtrl = {
   
   index (req, res, next) {
