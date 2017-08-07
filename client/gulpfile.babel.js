@@ -172,7 +172,7 @@ gulp.task('serve', ['scripts-debug', 'styles'], () => {
   gulp.watch(['app/images/**/*'], reload);
 });
 
-// Build and serve the output from the dist build
+/* Build and serve the output from the dist build
 gulp.task('serve:dist', ['default'], () =>
   browserSync({
     notify: false,
@@ -186,7 +186,7 @@ gulp.task('serve:dist', ['default'], () =>
     server: 'dist',
     port: 3001
   })
-);
+);*/
 
 // Build production files, the default task
 gulp.task('default', ['clean'], cb =>
