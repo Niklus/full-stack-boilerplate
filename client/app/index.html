@@ -36,13 +36,19 @@
     <link rel="canonical" href="http://www.example.com/">
     -->
     <link rel="stylesheet" type="text/css" href="styles/main.css">
-  </head>
-  <body>
+
+    <!-- Load Custom Elements es5 adapter -->
+    <script src="custom-elements-es5-adapter.js"></script>
     
-    <h1>Hello App</h1>
+    <!-- Load polyfills -->
+    <script src="webcomponents-lite.js"></script>
 
     <!-- Add your site or app content here -->
     <script src="scripts/main.min.js"></script>
+  </head>
+  <body>
+
+    <list-view></list-view>
 
     <script>
       if(navigator.serviceWorker) {

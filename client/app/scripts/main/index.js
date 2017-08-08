@@ -1,5 +1,12 @@
+import List from '../List';
 
-import app from '../app';
+customElements.define('list-view', List);
 
-app.log();
+
+
+
+
+
+
+
 

@@ -10,4 +10,6 @@ dist
 # temp folder
 .tmp
 
+# bower
+bower_components
 

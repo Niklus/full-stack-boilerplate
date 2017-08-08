@@ -8,6 +8,8 @@ import contactCtrl from '../controllers/contactCtrl';
 const router = Router();
 
 /* Index Route */
+
+router.get('/', homeCtrl.home); // if (index.html in client) '/' route reserved for the static html
 router.get('/home', homeCtrl.home);
 
 /* Contact Routes */
