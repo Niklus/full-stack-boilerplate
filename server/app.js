@@ -8,12 +8,15 @@ import path from 'path';
 import routes from './routes';
 import connectMongoose from './db';
 import engines from 'consolidate';
-// import favicon from 'serve-favicon';
 import expressValidator from 'express-validator';
-import dotenv from 'dotenv';
+import methodOverride from 'method-override';
+import session from 'express-session';
+import passport from 'passport';
+import flash from 'express-flash';
+import compression from 'compression';
 
-// Load environment variables from .env file
-dotenv.load();
+// Passport OAuth strategies
+import './auth/passport';
 
 // database connection
 connectMongoose();
@@ -26,21 +29,27 @@ app.engine('hbs', engines.handlebars);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// Middleware
+app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(expressValidator());
+app.use(methodOverride('_method'));
+app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
 
 // uncomment if you host your client on same origin
-// app.use(express.static(path.join(__dirname, '../client/dist'))); 
-
 // Configure Cors if if you host your client separately: 
 // checkout https://www.npmjs.com/package/cors
-
-// validator
-app.use(expressValidator());
+app.use(express.static(path.join(__dirname, '../client/dist'))); 
 
 // routes
 app.use('/', routes);

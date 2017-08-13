@@ -1,6 +1,10 @@
 'use strict';
 
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+// load env variables
+dotenv.load();
 
 //mongoose setup
 const connectMongoose = () => {

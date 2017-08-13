@@ -26,12 +26,15 @@ class List extends HTMLElement {
   }
 
   renderItems(items){
+    
+    const list = items.reduce((a, item) => a + `<li>${item.todo}</li>`,'');
 
-    console.log(items);  
-
-    this.innerHTML = "<h1>Hello App</h1>";
-
-    /*this.innerHTML = items.reduce((a, item) => a + `<div></div>`, '');*/
+    this.innerHTML = `
+      <div>
+        <h1>Todos</h1>
+        <ul>${list}</ul>
+      </div>
+    `;
   }
 }
 

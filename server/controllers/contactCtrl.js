@@ -2,6 +2,11 @@
 
 import { createTransport } from 'nodemailer';
 import mg from 'nodemailer-mailgun-transport';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.load();
+
 
 const auth = {
   auth: {
@@ -30,7 +35,8 @@ const contactCtrl = {
     const errors = req.validationErrors();
 
     if (errors) {
-      console.log('error', errors); // handle better
+      req.flash('error', errors);
+      console.log('error', errors);
       res.redirect('/contact');
       return;
     }
@@ -38,7 +44,7 @@ const contactCtrl = {
     const mailOptions = {
       from: req.body.name + ' ' + '<'+ req.body.email + '>',
       to: 'niklasoti@gmail.com',
-      subject: '✔ Contact Form | Full Stack Boilerplate from',
+      subject: '✔ Contact Form | Full Stack Boilerplate',
       text: req.body.message
     };
 
@@ -46,6 +52,7 @@ const contactCtrl = {
       if (err) {
         console.log(err); // handle better
       } else {
+        req.flash('success', { msg: 'Thank you! Your feedback has been submitted.' });
         console.log('Sent: ' + info); // handle better
       }
       res.redirect('/contact');
